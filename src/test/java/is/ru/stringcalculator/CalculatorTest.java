@@ -32,4 +32,22 @@ public class CalculatorTest {
 		assertEquals(2000, Calculator.add("1000,750,250"));
 	}
 
+	@Test
+	public void testMultipleNumbers3(){
+		assertEquals(8, Calculator.add("1,1,1,1,1,1,1,1"));
+	}
+
+	@Test
+	public void testNewLine1(){
+		assertEquals(6, Calculator.add("1\n2,3"));
+	}
+		@Test
+	public void testNewLine2(){
+		assertEquals(6, Calculator.add("1\n2\n3"));
+	}
+		@Test
+	public void testNewLine3(){
+		assertEquals(1605, Calculator.add("100,3\n999\n300\n200,3"));
+	}
+
 }
