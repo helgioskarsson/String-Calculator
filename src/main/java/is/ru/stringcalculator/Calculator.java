@@ -6,12 +6,25 @@ public class Calculator {
 		if(text.equals("")){
 			return 0;
 		}
-		else if(text.contains(",") || text.contains("\n")){
+		if(text.length() == 1){
+			return toInt(text);
+		}
+	//	text = text.substring(0);
+	//	System.out.println(text.substring(0, 2) );
+	//	System.out.println(text.substring(0, 2) + "##############");
+	//	System.out.println(text.substring(2, 3) + "$$$$$$$$$$$$$$");
+		if(text.contains("//")){
+			//System.out.println("&&&&&&&&&&");
+			String tmp = text.substring(2, 3);
+			text = text.substring(4);
+			text = text.replaceAll(tmp, ",");
+		}
+	//	System.out.println(text + "##############");
+		if(text.contains(",") || text.contains("\n")){
 			text = text.replaceAll("\n", ",");
 			return sum(splitNumbers(text));
 		}
-		else
-			return 1;
+		return 1;
 	} 
 
 	private static int toInt(String number){

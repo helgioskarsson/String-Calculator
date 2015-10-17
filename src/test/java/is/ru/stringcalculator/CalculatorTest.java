@@ -41,13 +41,17 @@ public class CalculatorTest {
 	public void testNewLine1(){
 		assertEquals(6, Calculator.add("1\n2,3"));
 	}
-		@Test
+	@Test
 	public void testNewLine2(){
 		assertEquals(6, Calculator.add("1\n2\n3"));
 	}
-		@Test
+	@Test
 	public void testNewLine3(){
 		assertEquals(1605, Calculator.add("100,3\n999\n300\n200,3"));
+	}
+	@Test
+	public void testDifferentDelimiter(){
+		assertEquals(3, Calculator.add("//;\n1;2"));
 	}
 
 }
