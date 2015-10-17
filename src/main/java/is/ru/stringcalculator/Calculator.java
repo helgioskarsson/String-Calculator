@@ -39,7 +39,9 @@ public class Calculator {
     			printIfNegative(numbers);
     			break;
     		}
+    		if(toInt(number) < 1001){
 				total += toInt(number);
+    		}
 		}
 		
 		return total;
