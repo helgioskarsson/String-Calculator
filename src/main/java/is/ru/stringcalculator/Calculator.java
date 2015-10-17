@@ -12,9 +12,18 @@ public class Calculator {
 			return toInt(text);
 		}
 		if(text.contains("//")){
-			String tmp = text.substring(2, 3);
-			text = text.substring(4);
-			text = text.replaceAll(tmp, ",");
+			String tmp;
+			if(text.contains("]")){
+				text = text.replaceAll("[^\\d]+", ",");
+				int indexOfBrac = text.indexOf("]");
+				text = text.substring(indexOfBrac + 2);
+			}
+			else{
+				tmp = text.substring(2, 3);
+				text = text.substring(4);
+				text = text.replaceAll(tmp, ",");
+			}
+			
 		}
 		if(text.contains(",") || text.contains("\n")){
 			text = text.replaceAll("\n", ",");

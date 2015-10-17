@@ -60,10 +60,19 @@ public class CalculatorTest {
 	public void testExpectedException() {
 	  assertEquals("Negatives not allowed:4 -4,-5", Calculator.add("2,-4,3,-5"));
 	}
-		@Test
+	@Test
 	public void testNoBignum(){
 		assertEquals(2, Calculator.add("1001,2"));
 	}
+	@Test
+	public void testDelimitersAnylength1(){
+		assertEquals(6, Calculator.add("//[***]\n1***2***3"));
+	}
+	@Test
+	public void testDelimitersAnylength2(){
+		assertEquals(6, Calculator.add("//[%%%%%]\n1%%%%%2%%%%%3"));
+	}
+
 }
 
 
