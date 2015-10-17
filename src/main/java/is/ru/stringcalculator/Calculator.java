@@ -11,6 +11,18 @@ public class Calculator {
 		if(text.length() == 1){
 			return toInt(text);
 		}
+
+		text = specialDelimiter(text);
+		
+		if(text.contains(",") || text.contains("\n")){
+			text = text.replaceAll("\n", ",");
+
+			return sum(splitNumbers(text));
+		}
+		return 1;
+	} 
+
+	private static String specialDelimiter(String text){
 		if(text.contains("//")){
 			String tmp;
 			if(text.contains("]")){
@@ -25,13 +37,9 @@ public class Calculator {
 			}
 			
 		}
-		if(text.contains(",") || text.contains("\n")){
-			text = text.replaceAll("\n", ",");
+		return text;
+	}
 
-			return sum(splitNumbers(text));
-		}
-		return 1;
-	} 
 
 	private static int toInt(String number){
 		return Integer.parseInt(number);

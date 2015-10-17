@@ -72,7 +72,14 @@ public class CalculatorTest {
 	public void testDelimitersAnylength2(){
 		assertEquals(6, Calculator.add("//[%%%%%]\n1%%%%%2%%%%%3"));
 	}
-
+	@Test
+	public void testMultipleDelimiters(){
+		assertEquals(6, Calculator.add("//[*][%]\n1*2%3"));
+	}
+		@Test
+	public void testMultipleDelimitersOfAnylength(){
+		assertEquals(6, Calculator.add("//[*****][%%%%]\n1*****2%%%%3"));
+	}
 }
 
 
