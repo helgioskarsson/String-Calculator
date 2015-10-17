@@ -1,4 +1,6 @@
 package is.ru.stringcalculator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Calculator {
 
@@ -9,19 +11,14 @@ public class Calculator {
 		if(text.length() == 1){
 			return toInt(text);
 		}
-	//	text = text.substring(0);
-	//	System.out.println(text.substring(0, 2) );
-	//	System.out.println(text.substring(0, 2) + "##############");
-	//	System.out.println(text.substring(2, 3) + "$$$$$$$$$$$$$$");
 		if(text.contains("//")){
-			//System.out.println("&&&&&&&&&&");
 			String tmp = text.substring(2, 3);
 			text = text.substring(4);
 			text = text.replaceAll(tmp, ",");
 		}
-	//	System.out.println(text + "##############");
 		if(text.contains(",") || text.contains("\n")){
 			text = text.replaceAll("\n", ",");
+
 			return sum(splitNumbers(text));
 		}
 		return 1;
@@ -38,8 +35,28 @@ public class Calculator {
     private static int sum(String[] numbers){
     	int total = 0;
 		for(String number : numbers){
-			total += toInt(number);
+			if(toInt(number) < 0){
+    			printIfNegative(numbers);
+    			break;
+    		}
+				total += toInt(number);
 		}
+		
 		return total;
+    }
+    private static void printIfNegative(String[] numbers){
+    		 List<Integer> negNum = new ArrayList<Integer>();
+    		int count = 0;
+    		for(String number : numbers){
+    			int numberInt = toInt(number);
+    			if(numberInt < 0){
+    				negNum.add(numberInt);
+    			}
+    		}
+    		String negNumsPrint = negNum.toString();
+    		negNumsPrint = negNumsPrint.replaceAll("\\[", "");
+    		negNumsPrint = negNumsPrint.replaceAll("\\]", "");
+    		negNumsPrint = negNumsPrint.replaceAll(" ", "");
+    		throw new IllegalArgumentException("Negatives not allowed: " + negNumsPrint);
     }
 }
